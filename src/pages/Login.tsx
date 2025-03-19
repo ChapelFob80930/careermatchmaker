@@ -9,10 +9,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+
+// hCaptcha site key
+const HCAPTCHA_SITE_KEY = "c0be550e-bd5e-4d72-a4fe-a45c17d682fc";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -28,8 +33,22 @@ const Login = () => {
     setActiveTab(tab);
   }, [location.search]);
 
+  const handleCaptchaVerify = (token: string) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, type: 'login' | 'register') => {
     e.preventDefault();
+    
+    if (!captchaToken) {
+      toast({
+        title: "Captcha verification required",
+        description: "Please complete the captcha verification",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
     // Simulate API call
@@ -126,6 +145,13 @@ const Login = () => {
                         </Button>
                       </div>
                     </div>
+                    
+                    <div className="mx-auto flex justify-center my-4">
+                      <HCaptcha
+                        sitekey={HCAPTCHA_SITE_KEY}
+                        onVerify={handleCaptchaVerify}
+                      />
+                    </div>
                   </CardContent>
                   
                   <CardFooter className="flex flex-col">
@@ -214,6 +240,13 @@ const Login = () => {
                       <p className="text-xs text-muted-foreground mt-1">
                         Must be at least 8 characters long
                       </p>
+                    </div>
+                    
+                    <div className="mx-auto flex justify-center my-4">
+                      <HCaptcha
+                        sitekey={HCAPTCHA_SITE_KEY}
+                        onVerify={handleCaptchaVerify}
+                      />
                     </div>
                   </CardContent>
                   
