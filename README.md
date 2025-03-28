@@ -1,3 +1,6 @@
+# This is a front end ui i have tried making using lovable ai, it for matching jobs, backend is not implemented, onlt frontend is implemented, might implement backend witht the supabase extension in lovable
+
+-----
 # Welcome to your Lovable project
 
 ## Project info
