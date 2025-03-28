@@ -1,11 +1,11 @@
-# This is a front end ui i have tried making using lovable ai, it for matching jobs, backend is not implemented, onlt frontend is implemented, might implement backend witht the supabase extension in lovable
+# This is a front end ui i have tried making using lovable ai, it is for matching jobs, backend is not implemented, only frontend is implemented, might implement backend with the supabase extension in lovable
 
 -----
 # Welcome to your Lovable project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/0a16e7e0-1641-47c0-bf82-b7083c396893
+**URL**: https://careermatchmaker.lovable.app/
 
 ## How can I edit this code?
 
